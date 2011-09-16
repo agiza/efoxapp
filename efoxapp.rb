@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # Simon Piette <piette.simon@gmail> 2011
-# <pkrnjevic@gmail.com> 2008
+# Peter Krnjevic <pkrnjevic@gmail.com> 2008
 # 
 # This script is licenced under the GPLv2
 
