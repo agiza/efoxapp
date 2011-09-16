@@ -1,0 +1,38 @@
+Efoxapp
+=======
+
+efoxapp is a little script to run elasticfox-ec2tags without firefox.
+
+This is a fork of http://code.google.com/p/efoxapp/ from pkrnjevic@gmail.com
+
+Requirements
+------------
+ * Ruby (tested with 1.8.7)
+ * libzip-ruby (on Debian-based distros)
+ * mercurial (tested with  1.4.3)
+ * a ~/Desktop directory
+
+Improvements:
+------------
+ * Use the ec2tag version
+ * Take the source from the mercurial repo
+ * Removed some dependencies
+ * Make a desktop icon with proper permissions
+
+To build:
+---------
+This will overwrite any existing ~/Desktop/elasticfox.desktop file
+
+* install mercurial
+* connect to the internet
+* Run `efoxapp.rb`
+* Use
+
+To use:
+--------
+    xulrunner efoxout/application.ini
+or click on the elasticfox icon on the desktop
+
+TODO
+----
+More error checks
