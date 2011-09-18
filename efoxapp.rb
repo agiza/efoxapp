@@ -15,8 +15,23 @@
 # 6. create ./application.ini
 #    
 
-require 'zip/zip'
-require 'fileutils'
+begin
+  require 'zip/zip'
+  require 'fileutils'
+rescue LoadError => error
+  case error.message
+  when /zip/
+    warn "#{error.message}"
+    warn '  package name is libzip-ruby under Debian/Ubuntu'
+    warn '  Or you can install it through gem: '
+    warn '  gem install zip'
+  when /fileutils/
+    warn 'How could you? fileutils is bundled with stock ruby?'
+  end
+  exit
+end
+
+
 include FileUtils::Verbose
 
 def unzip_file (file, destination)
@@ -51,7 +66,6 @@ Dir.chdir($elasticfox_hg_dir) do
   $xpi = $elasticfox_hg_dir + '/' + Dir.glob('*.xpi').to_s
 end
 
-#puts "unzip_file(#{$xpi},#{$output_dir})"
 unzip_file($xpi,$output_dir)
 cd $output_dir
 mkdir 'defaults'
