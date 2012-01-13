@@ -46,24 +46,24 @@ end
 
 $build_dir = Dir.getwd
 $output_dir = "#{$build_dir}/efoxout"
-$elasticfox_hg_path = 'https://bitbucket.org/winebarrel/elasticfox-ec2tag'
-$elasticfox_hg_dir = 'elasticfox-ec2tag'
+$elasticfox_git_path = 'https://github.com/cookpad/elasticfox-ec2tag.git'
+$elasticfox_git_dir = 'elasticfox-ec2tag'
 $xulrunner = '/usr/bin/xulrunner'
 
 rm_rf $output_dir
 mkdir_p $output_dir
 
 # get updated elasticfox source
-if not File.directory?($elasticfox_hg_dir)
-  system("hg clone " + $elasticfox_hg_path )
+if not File.directory?($elasticfox_git_dir)
+  system("git clone " + $elasticfox_git_path )
 else
-  Dir.chdir($elasticfox_hg_dir) do 
-    system("hg pull --update")
+  Dir.chdir($elasticfox_git_dir) do 
+    system("git pull origin master")
   end
 end
-Dir.chdir($elasticfox_hg_dir) do 
+Dir.chdir($elasticfox_git_dir) do 
   system('./package.sh')
-  $xpi = $elasticfox_hg_dir + '/' + Dir.glob('*.xpi').to_s
+  $xpi = $elasticfox_git_dir + '/' + Dir.glob('*.xpi').to_s
 end
 
 unzip_file($xpi,$output_dir)
